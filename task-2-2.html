@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>задание №2.2</title>
+    <style>
+        main {
+            width: 90%;
+            margin: 20px auto;
+        }
+
+        form {
+            margin: 20px 0;
+        }
+
+        form>*,
+        div>*,
+        p {
+            display: block;
+            margin: 5px 0;
+        }
+
+        p {
+            color: gray;
+        }
+    </style>
+</head>
+
+
+<body>
+    <div id="nav"></div>
+    <main>
+        <form required>
+            <select name="route" id="route" onchange="changeSelectTime()">
+                <option value="из A в B">из A в B</option>
+                <option value="из B в A">из B в A</option>
+                <option value="из A в B и обратно в А">из A в B и обратно в А</option>
+            </select>
+            <div id="selecttime"></div>
+            <label for="num">Количество билетов</label>
+            <input id="num" type="number" min="1" value="1" />
+            <input type="submit" onclick="Check()" value="Посчитать"></input>
+        </form>
+        <p>Стоимость билета в одну сторону: 700р.</p>
+        <p>Стоимость билета в обе стороны: 1200р.</p>
+    </main>
+</body>
+
+<script src="js/addnav.js"></script>
+
+
+<script>
+    var listtime = [
+        { id: "1", type: "из A в B", date: new Date("2021-08-21 18:00:00") },
+        { id: "2", type: "из A в B", date: new Date("2021-08-21 18:30:00") },
+        { id: "3", type: "из A в B", date: new Date("2021-08-21 18:45:00") },
+        { id: "4", type: "из A в B", date: new Date("2021-08-21 19:00:00") },
+        { id: "5", type: "из A в B", date: new Date("2021-08-21 19:15:00") },
+        { id: "6", type: "из A в B", date: new Date("2021-08-21 21:00:00") },
+        { id: "7", type: "из B в A", date: new Date("2021-08-21 18:30:00") },
+        { id: "8", type: "из B в A", date: new Date("2021-08-21 18:45:00") },
+        { id: "9", type: "из B в A", date: new Date("2021-08-21 19:00:00") },
+        { id: "10", type: "из B в A", date: new Date("2021-08-21 19:15:00") },
+        { id: "11", type: "из B в A", date: new Date("2021-08-21 19:35:00") },
+        { id: "12", type: "из B в A", date: new Date("2021-08-21 21:50:00") },
+        { id: "13", type: "из B в A", date: new Date("2021-08-21 21:55:00") }];
+    var price1 = 700; //"из A в B" и "из B в A" стоимость одного билета 700р.
+    var price2 = 1200; //"из A в B и обратно в А" стоимость составного билета 1200р
+    var traveltime = 1000 * 60 * 50; //50 минут
+    changeSelectTime();
+
+
+    function changeSelectTime() {
+        var type = this.route.value;
+        if (type == "из A в B" || type == "из B в A") {
+            var list = listtime.filter(item => item.type == type);
+            var contentForSelecttime = getOption(list);
+            this.selecttime.innerHTML =
+                `<label for="time">Выберите время</label>
+            <select name="time" id="time">`+ contentForSelecttime + `</select>`;
+        }
+        else {
+            var listAB = listtime.filter(item => item.type == "из A в B");
+            var contentOptionAB = getOption(listAB);
+            var listBA = listtime.filter(item => item.type == "из B в A");
+            var contentOptionBA = getOption(listBA);
+            this.selecttime.innerHTML = `
+            <label for="timeAB">Выберите время из A в B</label>
+            <select name="timeAB" id="timeAB" onchange="changeSelectTimeAB()">`+ contentOptionAB + `</select>
+            <label for="timeBA">Выберите время из B в A</label>
+            <select name="timeBA" id="timeBA"></select>`;
+            changeSelectTimeAB();
+        }
+    }
+
+    function getOption(list) {
+        var contentForSelecttime = "";
+        list.forEach(item => {
+            var time = geHtHMM(item.date);
+            contentForSelecttime +=
+                `<option value="` + item.id + `">` +
+                time + `</option>`;
+        });
+        return contentForSelecttime;
+    }
+
+    function geHtHMM(date) {
+        var hh = date.getHours();
+        hh = hh <= 9 ? '0' + hh : hh;
+        var mm = date.getMinutes();
+        mm = mm <= 9 ? '0' + mm : mm;
+        return hh + ":" + mm;
+    }
+
+    function changeSelectTimeAB() {
+        var valueAB = this.timeAB.value;
+        var itemAB = listtime.find(x => x.id == valueAB);
+
+        var time = itemAB.date.getTime();
+
+        var newtime = new Date();
+        newtime.setTime(time + traveltime);
+
+        var listBA = listtime.filter(item =>
+            item.type == "из B в A" && item.date >= newtime);
+        var contentOptionBA = getOption(listBA);
+        this.timeBA.innerHTML = contentOptionBA;
+    }
+
+    function Check() {
+        var type = this.route.value;
+        var count = this.num.value;
+        var price = '';
+
+        if (type == "из A в B" || type == "из B в A") {
+            price = price1;
+            var time = listtime.find(x => x.id == this.time.value);
+            var timeHHMM = geHtHMM(time.date);
+            alert(`
+            Выбранный путь: `+ type + `. \n
+            Время отправки: `+ timeHHMM + `. \n
+            Количество билетов: `+ count + `. \n
+            Итоговая цена: `+ count * price + `. \n 
+            `);
+        }
+        else {
+            price = price2;
+            var timeAB = listtime.find(x => x.id == this.timeAB.value);
+            var timeBA = listtime.find(x => x.id == this.timeBA.value);
+            var timeHHMM1 = geHtHMM(timeAB.date);
+            var timeHHMM2 = geHtHMM(timeBA.date);
+            alert(`
+            Выбранный путь: `+ type + `. \n
+            Время отправки: `+ timeHHMM1 + `. \n
+            Время обратной отправки: `+ timeHHMM2 + `. \n
+            Количество билетов: `+ count + `. \n
+            Итоговая цена: `+ count * price + `. \n 
+            `);
+        }
+    }
+</script>
+
+</html>

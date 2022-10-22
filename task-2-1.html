@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>задание №2.1</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            width: 100%;
+        }
+
+        main {
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        main div {
+            overflow-x: auto;
+            width: 90%;
+            margin: auto;
+            margin: 30px;
+        }
+
+        table {
+            border-collapse: collapse;
+            margin: auto;
+        }
+
+        th,
+        td {
+            border: 1px solid rgb(154, 180, 197);
+            text-align: center;
+            padding: 3px 10px;
+        }
+
+        p {
+            text-align: justify;
+            color: red;
+            margin: 10px auto;
+        }
+
+        h3 {
+            text-align: center;
+            margin: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="nav"></div>
+    <main>
+        <div>
+            <p>Учитывая логическое проектирование должно получиться следующее:</p>
+            <p>1. Типы билетов могут повторятся и каждый имеет свою цену,
+                так что выносим в отдельную таблицу. </p>
+            <p>2. Билеты тоже стоит вынести в отдельную таблицу, 
+                так как билет имеет свой barcode, id и человека,
+                который этим билетом воспользуется.</p>
+            <p>3. В заказах убираем лишние (перенесенные в другие таблицы) колонки 
+                и можно подсчитать общее количество билетов.</p>
+        </div>
+        <div>
+            <h3>"Билеты в заказе"</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>id_order <br>(id заказа)</th>
+                        <th>event_id <br>(id события)</th>
+                        <th>event_date <br>(дата события)</th>
+                        <th>type_id <br>(id типа билета)</th>
+                        <th>ticket_price <br>(цена билета на момент покупки)</th>
+                        <th>barcode</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>003</td>
+                        <td>2021-07-29 18:00:00</td>
+                        <td>2</td>
+                        <td>300</td>
+                        <td>11111111</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>1</td>
+                        <td>006</td>
+                        <td>2021-08-21 13:00:00</td>
+                        <td>3</td>
+                        <td>250</td>
+                        <td>22222222</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>1</td>
+                        <td>006</td>
+                        <td>2021-08-21 13:00:00</td>
+                        <td>1</td>
+                        <td>450</td>
+                        <td>33333333</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div>
+            <h3>"Заказы"</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>user_id<br>(пользователь)</th>
+                        <th>barcode</th>
+                        <th>ticket_quantity<br>(количество билетов)</th>
+                        <th>equal_price<br>(сумма заказа)</th>
+                        <th>created<br>(дата заказа)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>00451</td>
+                        <td>11111111</td>
+                        <td>3</td>
+                        <td>1200</td>
+                        <td>2021-01-11 13:22:09</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>00364</td>
+                        <td>22222222</td>
+                        <td>4</td>
+                        <td>1500</td>
+                        <td>2021-01-12 16:62:08</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>00015</td>
+                        <td>33333333</td>
+                        <td>2</td>
+                        <td>600</td>
+                        <td>2021-01-13 10:08:45</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div>
+            <h3>"Типы билетов"</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>name<br>(наименование типа)</th>
+                        <th>price<br>(текущая цена)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>взрослый</td>
+                        <td>450</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>детский</td>
+                        <td>300</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>льготный</td>
+                        <td>250</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>групповой</td>
+                        <td>200</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+</body>
+<script src="js/addnav.js"></script>
+
+</html>

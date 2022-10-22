@@ -1,0 +1,27 @@
+@media screen and (min-width: 500px) {
+    .card{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: stretch;
+    }
+    .card-banner{
+        flex: 1 1 200px;
+    }
+    .card-info{
+        flex: 1 1 300px;
+    }
+    .card-banner img {
+        object-fit: cover;
+        height: 100%;
+        width: 100%;
+    }
+    .card-price{
+        justify-content: flex-start;
+    }
+
+    .time-list {
+        display: inline-block;
+        margin: auto;
+    }
+}

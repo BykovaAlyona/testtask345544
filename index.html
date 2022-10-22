@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/desktop.css" media="(min-width: 500px)">
+    <title>задание №1.1</title>
+</head>
+
+<body>
+    <div id="nav"></div>
+    <main>
+        <div class="card">
+            <div class="card-banner">
+                <span class="s1">Новинка</span>
+                <img src="images/banner1.png" alt="">
+            </div>
+            <div class="card-info">
+                <p class="card-time">2 часа</p>
+                <p class="card-title">
+                    АКЦИЯ - Обзорная экскурсия по рекам и каналам с остановками Hop on Hop Off 2019
+                </p>
+                <ul class="card-list">
+                    <li>Билет на целый день</li>
+                    <li>Неограниченное число катаний</li>
+                    <li>6 остановок у главных достопримечательностей</li>
+                    <li>Ближайший рейс сегодня
+                        <ul class="time-list">
+                            <li>12:00</li>
+                            <li>12:00</li>
+                            <li>12:00</li>
+                            <li>12:00</li>
+                            <li>12:00</li>
+                            <li>12:00</li>
+                            <li>12:00</li>
+                            <li>12:00</li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="card-price">
+                    <div>
+                        <p class="price-site">900₽</p>
+                        <p class="price-real">1200 р на причале</p>
+                    </div>
+                    <a class="a-button">Подробнее</a>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-banner">
+                <span class="s2">Круглый год</span>
+                <img src="images/banner2.png" alt="">
+            </div>
+            <div class="card-info">
+                <p class="card-time">2 часа</p>
+                <p class="card-title">
+                    Обзорная экскурсия по рекам и каналам
+                    с остановками Hop on Hop Off 2020 </p>
+                <ul class="card-list">
+                    <li>Билет на целый день</li>
+                    <li>Неограниченное число катаний</li>
+                    <li>6 остановок у главных достопримечательностей</li>
+                    <li>Ближайший рейс сегодня
+                        <ul class="time-list">
+                            <li>12:00</li>
+                            <li>12:00</li>
+                            <li>12:00</li>
+                            <li>12:00</li>
+                            <li>12:00</li>
+                            <li>12:00</li>
+                            <li>12:00</li>
+                            <li>12:00</li>
+                            <li>12:00</li>
+                            <li>12:00</li>
+                            <li>12:00</li>
+                            <li>12:00</li>
+                            <li>12:00</li>
+                            <li>12:00</li>
+                            <li>12:00</li>
+                            <li>12:00</li>
+                            <li>12:00</li>
+                            <li>12:00</li>
+                            <li>12:00</li>
+                            <li>12:00</li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="card-price">
+                    <div>
+                        <p class="price-site">900₽</p>
+                        <p class="price-real">1200 р на причале</p>
+                    </div>
+                    <a class="a-button">Подробнее</a>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-banner">
+                <img src="images/banner3.png" alt="">
+            </div>
+            <div class="card-info">
+                <p class="card-time">2 часа</p>
+                <p class="card-title">
+                    Обзорная экскурсия по рекам и каналам
+                    с остановками Hop on Hop Off 2020 </p>
+                <ul class="card-list">
+                    <li>Билет на целый день</li>
+                    <li>Неограниченное число катаний</li>
+                    <li>6 остановок у главных достопримечательностей</li>
+                    <li>Ближайший рейс сегодня
+                        <ul class="time-list">
+                            <li>12:00</li>
+                            <li>12:00</li>
+                            <li>12:00</li>
+                            <li>12:00</li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="card-price">
+                    <div>
+                        <p class="price-site">900₽</p>
+                        <p class="price-real">1200 р на причале</p>
+                    </div>
+                    <a class="a-button">Подробнее</a>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="js/flexmenu.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('ul.time-list').flexMenu();
+        });
+    </script>
+</body>
+<script src="js/addnav.js"></script>
+
+</html>
